@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: hashicorp/packer
     steps:
-      - validate
+      - checkout
       - run: 
           name: clone
           command: git clone https://github.com/chriscmorgan/circleci-test.git
