@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  validate:
     docker:
       - image: hashicorp/packer
     steps:
@@ -11,3 +11,25 @@ jobs:
       - run:
           name: run packer
           command: cd circleci-test;cd packer;packer validate webserver.json
+  build:
+    docker:
+      - image: hashicorp/packer
+    steps:
+      - checkout
+      - run: 
+          name: clone
+          command: git clone https://github.com/chriscmorgan/circleci-test.git
+      - run:
+          name: run packer
+          command: cd circleci-test;cd packer;packer build webserver.json
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - validate
+      - build:
+          requires:
+            - validate
+          filters:
+            branches:
+              only: master          
