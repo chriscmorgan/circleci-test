@@ -19,10 +19,10 @@ jobs:
       - image: hashicorp/terraform
     working_directory: ~/exported-config
     steps:
-      - checkout 
       - attach_workspace:
           at: ~/exported-config
       - run: ls -la
+      - run: cd packer;ls -la
       - run: cat packer/cluster-output.txt
 
 workflows:
