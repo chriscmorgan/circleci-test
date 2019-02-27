@@ -9,7 +9,7 @@ jobs:
       - attach_workspace:
           at: ~/exported-config
       - checkout
-      - run: cd packer;packer validate webserver.json > ~/cluster-output.txt
+      - run: cd packer;packer validate webserver.json > cluster-output.txt
       - persist_to_workspace:
           root: .
           paths: packer
