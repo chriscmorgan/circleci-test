@@ -12,7 +12,7 @@ jobs:
       - run: ls -la
       - run: cd ..
       - run: ls -la
-      - run: cd circleci-test;cd packer;packer build webserver.json > ~/cluster-output.txt
+      - run: cd packer;packer build webserver.json > ~/cluster-output.txt
       - persist_to_workspace:
           root: .
           paths: cluster-output.txt
