@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run: cd packer;packer validate webserver.json > ~/cluster-output.txt
       - persist_to_workspace:
-          root: .
+          root: ~
           paths: packer/cluster-output.txt
 
   terraform:
