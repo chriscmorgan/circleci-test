@@ -9,13 +9,10 @@ jobs:
       - attach_workspace:
           at: ~/exported-config
       - checkout
-      - run: ls -la
-      - run: cd ..
-      - run: ls -la
-      - run: cd packer;packer build webserver.json > ~/cluster-output.txt
+      - run: cd packer;packer validate webserver.json > ~/cluster-output.txt
       - persist_to_workspace:
           root: .
-          paths: cluster-output.txt
+          paths: packer/cluster-output.txt
 
   terraform:
     docker:
@@ -25,7 +22,8 @@ jobs:
       - checkout 
       - attach_workspace:
           at: ~/exported-config
-      - run: cat cluster-output.txt
+      - run: ls -la
+      - run: cat packer/cluster-output.txt
 
 workflows:
   version: 2
