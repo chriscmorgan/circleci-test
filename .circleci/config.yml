@@ -9,6 +9,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/exported-config
+      - run: pwd
       - run: cd circleci-test;cd packer;packer build webserver.json > ~/cluster-output.txt
       - persist_to_workspace:
           root: .
