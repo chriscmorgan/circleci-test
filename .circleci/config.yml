@@ -6,9 +6,10 @@ jobs:
       - image: hashicorp/packer
     working_directory: ~/exported-config
     steps:
-      - checkout
       - attach_workspace:
           at: ~/exported-config
+      - checkout
+      - run: pwd
       - run: cd ..
       - run: pwd
       - run: cd circleci-test;cd packer;packer build webserver.json > ~/cluster-output.txt
